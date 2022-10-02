@@ -1,0 +1,36 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %} home {% endblock title %}
+
+{% block body %}
+    <div class="home-page-forms">
+        <form action="{% url 'attachment:home' %}" method="post">
+            {% csrf_token %}
+            <div class="profile-info">
+                <section class="profile-label">
+                    <h1>Profile</h1>
+                </section>
+                <div class="profile-form">
+                    <table>
+                        {{user_form.as_table}}
+                    </table>
+                </div>
+             </div>
+             
+             <hr>
+
+             <div class="company-info">
+                <section class="company-label">
+                    <h1>Company Information</h1>
+                </section>
+                <div class="company-form">
+                  <table>
+                      {{company_form.as_table}}
+                    </table>
+                </div>
+             </div>
+             <input id="submit-btn" type="submit" value="Submit"/>
+        </form>
+    </div>
+
+{% endblock body %}

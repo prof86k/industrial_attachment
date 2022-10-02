@@ -1,0 +1,65 @@
+{% extends 'industrial_attachment/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} log book activity {% endblock title %}
+
+{%block body%}
+<div class="text-center">
+    <h1 class="header-text">ACTIVITIES OF THE DAY</h1>
+</div>
+<div>
+  <h3>Effective activity on:{{effective}}</h3>
+</div>
+
+<div class="mb-3">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <div class="container overflow-hidden mb-3">
+          <div class="row gy-3">
+            <div class="col-6">
+              <div class="p-3 border bg-light">
+                  <p>{{logbookform.activity.label}}</p>
+                  <p>{{logbookform.activity}}</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 border bg-light">
+                  <p>{{logbookform.self_input.label}}</p>
+                  <p>{{logbookform.self_input}}</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 border bg-light">
+                  <p>{{logbookform.recommendation.label}}</p>
+                  <p>{{logbookform.recommendation}}</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 border bg-light">
+                  <p>{{logbookform.conclusion.label}}</p>
+                  <p>{{logbookform.conclusion}}</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 border bg-light">
+                <p>{{logbookform.latitude.label}}</p>
+                <p>{{logbookform.latitude}}</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 border bg-light">
+                <p>{{logbookform.longitude.label}}</p>
+                <p>{{logbookform.longitude}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input class="btn btn-primary md col-12" id="submit-btn" type="submit" value="Submit"/>
+    </form>
+</div>
+
+
+
+
+
+{% endblock body %}

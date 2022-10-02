@@ -1,0 +1,24 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %} supervisor detailed information {% endblock title %}
+
+{% block body %}
+    <div class="super-details">
+        <div class="super-details-info">
+            <form action="{% url 'attachment:super-details' %}" method="POST" class="form-control uniForm">
+                {% csrf_token %}
+                <table>
+                    <tr class="mb-3 row">
+                        <th>{{detailed_form.title.label}}</th>
+                        <td>{{detailed_form.title}}</td>
+                    </tr>
+                    <tr class="mb-3 row">
+                        <th>{{category_form.category_name.label}}</th>
+                        <td>{{category_form.category_name}}</td>
+                    </tr>
+                </table>
+                <input class="btn btn-success col-6" type="submit" value="Update"/>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

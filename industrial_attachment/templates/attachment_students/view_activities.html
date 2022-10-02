@@ -1,0 +1,40 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %}view activities{% endblock title %}
+
+{% block body %}
+    <div class="mb-3">
+        <div class="text-center">
+            <p class="display-4">{{student.user.full_name}} Your Activities</p>
+        </div>
+        <hr>
+        {% if logbook_activities %}
+        <div class="container col text-center">
+            <a href="{% url 'attachment:print-work' %}" class="btn btn-secondary mb-5">Print My Book</a>
+        </div>
+        <hr>
+            {% for activity in logbook_activities %}
+               <div class="card mb-3">
+                   <div class="card-header bg-success text-white text-center"> Submited On : {{activity.activity_date}}
+                       <span style="float: right;">
+                           <a href="{% url 'attachment:edit-activity' activity.id %}" class="btn btn-danger" data-bs-toggle="tooltip"  data-bs-placement="top" title="Edit information here">
+                               Edit
+                           </a>
+                       </span>
+                   </div>
+                   <div class="card-body">
+                        <p>{{activity.activity}}</p>
+                        <p>{{activity.self_input}}</p>
+                        <p>{{activity.recommendation}}</p>
+                        <p>{{activity.conclusion}}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                       <a href="#" class="btn btn-success"> visit the place coordinate {{activity.latitude}} :: {{activity.longitude}}</a> 
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No Activities yet</p>
+        {% endif %}
+    </div>
+{% endblock body %}

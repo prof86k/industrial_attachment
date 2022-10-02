@@ -1,0 +1,51 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %}view activities{% endblock title %}
+
+{% block body %}
+<div class="activities">
+    {% if logbook_info %}
+    {% for activity in logbook_info %}
+    <div class="card mb-3">
+    <div class="card-header bg-success text-white text-center"> 
+        Submited On : {{activity.activity_date}}
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <h6>
+                <b>ACTIVITY</b>
+            </h6>
+            <p>{{activity.activity}}</p>
+        </div>
+        <div class="container">
+            <h6>
+                <b>SELF INPUT</b>
+            </h6>
+            <p>{{activity.self_input}}</p>
+        </div>
+        <div class="container">
+            <h6>
+                <b>RECOMMENDATION</b>
+            </h6>
+            <p>{{activity.recommendation}}</p>
+        </div>
+        <div class="container">
+            <h6>
+                <b>CONCLUSION</b>
+            </h6>
+            <p>{{activity.conclusion}}</p>
+        </div>
+        
+        
+        
+    </div>
+    <div class="card-footer text-center">
+        <a href="#" class="btn btn-success"> visit the place coordinate {{activity.latitude}} :: {{activity.longitude}}</a>
+    </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No Activities yet</p>
+    {% endif %}
+</div>
+{% endblock body %}

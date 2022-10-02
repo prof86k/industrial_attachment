@@ -1,0 +1,82 @@
+{% extends 'industrial_attachment/base.html' %}
+
+
+{% block title %} registration page{% endblock title %}
+
+
+{% block body %}
+<main class="student-registration">
+
+
+    <div class="student-registration-label">
+        <h2>Student Registration Page</h2>
+    </div>
+    <div class="student-registration-form">
+        <form action="{% url 'attachment:student-registration' %}" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>
+                        {{student_form.full_name.label}} 
+                    </th>
+                    <td>
+                        {{student_form.full_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {{student_form.active_email.label}} 
+                    </th>
+                    <td>
+                        {{student_form.active_email}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {{student_form.phone.label}}
+                    </th>
+                    <td>
+                        {{student_form.phone}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {{student_form.username.label}}
+                    </th>
+                    <td>
+                        {{student_form.username}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {{student_form.password1.label}}
+                    </th>
+                    <td>
+                        {{student_form.password1}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {{student_form.password2.label}} 
+                    </th>
+                    <td>
+                        {{student_form.password2}}
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input class="btn btn-primary md mb-3 col-12" type="submit" value="Register"/>
+                    </th>    
+                </tr>
+            </table>
+        </form>
+        <div class="sign-in">
+            <p>Have Account Already?<span>
+                <a href="{% url 'attachment:student-login' %}">Sign In</a>
+            </span></p>
+        </div>
+    </div>
+
+</main>
+
+{% endblock body %}

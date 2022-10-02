@@ -1,0 +1,65 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %} supervisor profile {% endblock title %}
+
+{% block body %}
+<main class="supervisor-profile">
+    <div class="text-center">
+        <h2 class="display-5">Supervisor Profile Page</h2>
+    </div>
+    <div class="shadow-lg rounded">
+        <button class="btn btn-success mb-3 col-12" data-bs-toggle="modal" data-bs-target="#exampleModal">Upate Supervision Details</button>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Update Information</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                     <form action="{% url 'attachment:super-details' %}" method="POST" class="form-control uniForm">
+                         {% csrf_token %}
+                         <table>
+                             <tr class="mb-3 row">
+                                 <p>Title</p>
+                                 <input class="form-control" type="text" name="title" placeholder="title" required>
+                             </tr>
+                             <tr class="mb-3 row">
+                                <p>Field</p>
+                                <input class="form-control" type="text" name="field" placeholder="Field of supervison" required/>
+                             </tr>
+                         </table>
+                         <input class="btn btn-success col-12" type="submit" value="Update"/>
+                     </form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+    <div class="super-info">
+        <table class="table mb-3">
+            <thead class="table-dark">
+            <tr>
+                <th>Full Name:</th>
+                <th>Phone Number:</th>
+                <th>Supervisor:</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{current_user.user.full_name}}</td>
+                <td>{{current_user.user.phone_number}}</td>
+                <td>{{current_user.user.is_supervisor}}</td>
+                <td>{{current_user.user.username}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{% endblock body %}

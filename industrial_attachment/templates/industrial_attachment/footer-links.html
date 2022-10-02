@@ -1,0 +1,14 @@
+<footer>
+    <section id="comments-to-developer">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Comments Here"></textarea>
+            </div>
+            <input class="btn btn-success btn-lg col-12 mb-3" data-bs-toggle="tooltip"  data-bs-placement="top" title="Your Comments Are Welcome eg. For System Improvement" type="submit" value="Comment"/>
+        </form>
+    </section>
+    <section class="bg-primary text-white text-center">
+        <p style="font-size:20px">Mirror.com &copy; {{current_date}}</p>
+    </section>
+</footer>

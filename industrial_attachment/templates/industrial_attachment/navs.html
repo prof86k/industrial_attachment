@@ -1,0 +1,67 @@
+<nav>
+    <div class="main-nav" id="top-navbar">
+        {% if user.is_authenticated %}
+        <div class="nav-item">
+            <a id="nav-header" href="#">Menu</a>
+        </div>
+        {% endif %}
+        {% if user.is_student %}
+        <div class="nav-item">
+            <a href="{% url 'attachment:student-log-out' %}">Student Logout</a>
+        </div>
+        {% elif user.is_supervisor %}
+        <div class="nav-item">
+            <a href="{% url 'attachment:supervisor-log-out' %}">Supervisor Logout</a>
+        </div>
+        {% else %}
+        <div class="nav-item">
+            <a href="{% url 'attachment:main-page' %}">Home Page</a>
+        </div>
+        <div class="nav-item">
+            <a href="{% url 'attachment:student-login' %}">Student Login</a>
+        </div>
+        <div class="nav-item">
+            <a href="{% url 'attachment:super-login' %}">Supervisor Login</a>
+        </div>
+        {% endif %}
+    </div>
+    {% if request.user.is_authenticated %}
+    <ul class="list-unstyled" id="side-nav">
+        <li class="menu-items">
+            <div id="menu">Menu</div>
+            <div id="cancel">&times;</div>
+        </li>
+        {% if user.is_student %}
+        <li class="side-nav-item">
+            <a href="{% url 'attachment:student-profile' %}"> <i class="bi bi-house-fill"></i>Profile</a>
+        </li>
+        
+        <li class="side-nav-item">
+            <a href="{% url 'attachment:student-logbook' %}">My LogBook</a>
+        </li>
+        <li class="side-nav-item">
+            <a href="{% url 'attachment:student-view-activities' %}"> View Work</a>
+        </li>
+        {% else %}
+
+        <li class="side-nav-item">
+            <a href="{% url 'attachment:super-profile' %}">Supervisor Profile</a>
+        </li>
+        <li class="text-white">
+            <a class="text-white" href="{% url 'attachment:view-students' %}">Registered students</a>
+
+            <ul class="text-white list-unstyled">
+                {% for student in category.company_set.all %}
+                    <li class="text-white">
+                        <a class="text-white" href="{% url 'attachment:view-activity' student.student.user.id %}">
+                            {{student.student.user.full_name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</nav>
+
+

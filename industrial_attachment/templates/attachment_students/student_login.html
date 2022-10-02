@@ -1,0 +1,33 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %} login {% endblock title %}
+
+
+{% block body %}
+<div style="margin-left:25%;" class="container">
+    <main class="card col-md-6 mb-5 text-center">
+        <div class="card-harder">
+            <h2>Student Login</h2>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'attachment:student-login' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-6 mb-3">
+                    <input style="margin-left:50%;" class="form-control " type="text" id="super-username-id"
+                        name="username" required placeholder="Username" />
+                </div>
+                <div style="margin-left:25%;" class="col-6 mb-3">
+                    <input class="form-control" type="password" id="super-password-id" name="password" required
+                        placeholder="Password" />
+                </div>
+                <input class="btn btn-primary md col-6 mb-3" type="submit" value="Login" />
+            </form>
+            <div class="create-account">
+                <p>Don't Have Account?<span>
+                        <a href="{% url 'attachment:student-registration' %}">Create Account</a>
+                    </span></p>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock body %}

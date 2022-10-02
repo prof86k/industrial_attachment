@@ -1,0 +1,127 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %} profile {% endblock title %}
+
+{% block body %}
+{% if not user_data.full_name and com_info %}
+    <p>Please follow this link to finish the setup</p>
+    <div class="hompe-page">
+        <a href="{% url 'attachment:home' %}">Finish Basic Information Setup</a>
+    </div>
+    {% else %}
+    <div class="profile-page">
+        <div class="text-center">
+            <h3 class="display-6">PROFILE</h3>
+        </div>
+        <hr>
+
+        <div class="shadow-lg rounded">
+            <button class="btn btn-success mb-3 col-12" data-bs-toggle="modal" data-bs-target="#exampleModal">Upate Information</button>
+        </div>
+    
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p>Update Information</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'attachment:student-profile' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="profile-info">
+                                <div class="profile-form">
+                                   {{stud_form.as_p}}
+                                </div>
+                             </div>
+                             
+                             <hr>
+                             <div class="company-info">
+                                <div class="company-form">
+                                    {{com_form.as_p}}
+                                </div>
+                             </div>
+                             <input class="btn btn-success col-12" id="submit-btn" type="submit" value="Submit"/>
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="mb-3">
+            <div class="text-center">
+                <h2>STUDENT ATTACHMENT DETAILS</h2>
+            </div>
+            <div class="mb-3">
+                    <table class="table mb-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Student Id</th>
+                                <th>Gender</th>
+                                <th>Student Programme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{user_data.user.full_name}}</td>
+                                <td>{{user_data.user.phone_number}}</td>
+                                <td>{{user_data.student_id}}</td>
+                                <td>{{user_data.gender}}</td>
+                                <td>{{user_data.student_programme}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+            </div>
+            <div class="text-center">
+                <h3>ATTACHMENT AREA INFORMATION</h3>
+            </div>
+            <div class="com_datails">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Category</th>
+                                <th>Company Name</th>
+                                <th>Region Found</th>
+                                <th>Contact Person</th>
+                                <th>Contact Number</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{com_data.category}}</td>
+                            <td>{{com_data.name}}</td>
+                            <td>{{com_data.district}}</td>
+                            <td>{{com_data.contact_person}}</td>
+                            <td>{{com_data.contact_number}}</td>
+                            <td>{{com_data.latitude}}</td>
+                            <td>{{com_data.longitude}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+{% endblock body %}

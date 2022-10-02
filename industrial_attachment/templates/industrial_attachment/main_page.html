@@ -1,0 +1,47 @@
+{% extends "industrial_attachment/base.html" %}
+
+{% block title %} main page {% endblock title %}
+
+{% block body %}
+
+<main class="container">
+    <div id="title-label">
+        <h1 class="display-4" >Industrial Attachment Main Page</h1>
+        <div class="lead">
+            <div class="card text-center mb-3">
+                <div class="card-header bg-success text-white">
+                   Supervisor Sign Up
+                </div>
+                <div class="card-body">
+                    <p class="card-text">New supervisor? Click this button to register account.</p>
+                    <a class="btn btn-success" data-bs-toggle="tooltip"  data-bs-placement="top" title="Click this button to register new account" href="{% url 'attachment:super-registration' %}">
+                        Supervisor Registration
+                    </a>
+                </div>
+                <div class="card-footer text-muted">
+                    This Page Is Used By supervisors only
+                </div>
+            </div>
+
+            <div class="card text-center mb-3">
+                <div class="card-header bg-success text-white bg-opacity-100">
+                    Student Sign Up
+                </div>
+                <div class="card-body">
+                    <p class="card-text">New Student Registration. Click this button to register</p>
+                        <a class="btn btn-success" data-bs-toggle="tooltip"  data-bs-placement="top" title="Click this button to register new account" href="{% url 'attachment:student-registration' %}">
+                        Student Registration
+                    </a>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"> -->
+                        <!-- Tooltip on top -->
+                    <!-- </button> -->
+                </div>
+                <div class=" card-footer text-muted">
+                    This Page Is Use By students only
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock body %}

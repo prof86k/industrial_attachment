@@ -1,0 +1,61 @@
+{% extends 'industrial_attachment/base.html' %}
+
+{% block title %} student activity {% endblock title %}
+
+{% block body %}
+    <main style="height: 100%;" class="mb-5">
+        <div >
+            <h6 class="display-6 mb-4">All Attachment Students Under
+                 <span class="display-6 text-primary" style="text-transform: uppercase; text-decoration:underline;">
+                {{category.category_name}}
+            </h6>
+        </div>
+        <table class="table">
+            <thead class="table-dark">
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Region</th>
+                <th>District</th>
+                <th>Area</th>
+                <th>Area Coordinates</th>
+                <th>Student Activities</th>
+                <th>Download PDF</th>
+            </tr>
+            </thead>
+           
+                {% for company in category.company_set.all %}
+                <tbody>
+                <tr>
+                    <td>
+        
+                        {{company.student.student_id}}
+            
+                    </td>
+                    <td>
+                        {{company.student.user.full_name}}
+                    </td>
+                    <td>{{company.district}}</td>
+                    <td>
+                        {{company.region}}
+                    </td>
+                    <td>
+                        {{company.name}}
+                    </td>
+                    <td>
+                       <a href="#" class="btn btn-outline-danger" data-bs-toggle="tooltip"  data-bs-placement="top" title="Visit The Location">{{company.latitude}} : {{company.longitude}}</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success" data-bs-toggle="tooltip"  data-bs-placement="top" title="View Activities" href="{% url 'attachment:view-activity' company.student.user.id%}">View Activities</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'attachment:generate-pdf' company.student.user.id %}" class="btn btn-success">Download LogBook</a>
+                    </td>
+                </tr>
+                </tbody>
+                {% endfor %}
+            
+        </table>
+        
+    </main>
+{% endblock body %}
